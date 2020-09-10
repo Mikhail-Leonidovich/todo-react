@@ -17,7 +17,7 @@ h6 {
 }
 
 .App {
-  background-image: url("../images/bg_image.jpg");
+  background-image: url("../../images/bg_image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
