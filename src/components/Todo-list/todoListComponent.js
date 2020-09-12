@@ -8,7 +8,7 @@ export default class TodoListComponent extends Component {
     const todoItems = TodoDate.map((item) => {
       return (
         <TasksListComponent
-          id={item.id}
+          key={item.id}
           todo={item.todo}
           checked={item.checked}
         />
