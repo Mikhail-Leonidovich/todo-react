@@ -1,9 +1,20 @@
 import React, { Component } from "react";
-import "../todo-list/todoListStyle.css";
-import TasksListComponent from "../tasks-list/tasksListComponent.js";
+import "../Todo-list/todoListStyle.css";
+import TasksListComponent from "../Tasks-list/tasksListComponent.js";
+import TodoDate from "../../TodoDate";
 
 export default class TodoListComponent extends Component {
   render() {
+    const todoItems = TodoDate.map((item) => {
+      return (
+        <TasksListComponent
+          id={item.id}
+          todo={item.todo}
+          checked={item.checked}
+        />
+      );
+    });
+
     return (
       <section className="content">
         <div className="container">
@@ -18,7 +29,7 @@ export default class TodoListComponent extends Component {
                 Add
               </button>
             </div>
-            <TasksListComponent />
+            <div className="tasks__list">{todoItems}</div>
           </div>
         </div>
       </section>
