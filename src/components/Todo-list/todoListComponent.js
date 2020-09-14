@@ -1,16 +1,45 @@
 import React, { Component } from "react";
 import "../Todo-list/todoListStyle.css";
 import TasksListComponent from "../Tasks-list/tasksListComponent.js";
-import TodoDate from "../../TodoDate";
+import TodoDate from "../../TodoDate.js";
 
 export default class TodoListComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      todoItems: TodoDate,
+    };
+  }
+
+  handleChange = (id) => {
+    const index = this.state.todoItems.map((item) => item.id).indexOf(id);
+    this.setState((state) => {
+      let modifiedList = [...state.todoItems];
+      modifiedList[index].checked = !modifiedList[index].checked;
+
+      return { todoItems: modifiedList };
+    });
+  };
+
   render() {
-    const todoItems = TodoDate.map((item) => {
+    const { todoItems } = this.state;
+
+    const incompTasks = todoItems.filter((item) => {
+      return item.checked === false;
+    });
+    const compTasks = todoItems.filter((item) => {
+      return item.checked === true;
+    });
+
+    const tasks = [...incompTasks, ...compTasks].map((item) => {
       return (
         <TasksListComponent
           key={item.id}
           todo={item.todo}
           checked={item.checked}
+          handleClick={() => {
+            this.handleChange(item.id);
+          }}
         />
       );
     });
@@ -29,7 +58,7 @@ export default class TodoListComponent extends Component {
                 Add
               </button>
             </div>
-            <div className="tasks__list">{todoItems}</div>
+            <div className="tasks__list">{tasks}</div>
           </div>
         </div>
       </section>
