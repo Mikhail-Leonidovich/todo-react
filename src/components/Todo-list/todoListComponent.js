@@ -11,13 +11,21 @@ export default class TodoListComponent extends Component {
     };
   }
 
-  handleChange = (id) => {
+  handleDone = (id) => {
     const index = this.state.todoItems.map((item) => item.id).indexOf(id);
     this.setState((state) => {
-      let modifiedList = [...state.todoItems];
-      modifiedList[index].checked = !modifiedList[index].checked;
+      let { todoItems } = state;
+      todoItems[index].checked = !todoItems[index].checked;
+      return todoItems;
+    });
+  };
 
-      return { todoItems: modifiedList };
+  handleDelete = (id) => {
+    const index = this.state.todoItems.map((item) => item.id).indexOf(id);
+    this.setState((state) => {
+      let { todoItems } = state;
+      todoItems.splice(index, 1);
+      return todoItems;
     });
   };
 
@@ -37,8 +45,11 @@ export default class TodoListComponent extends Component {
           key={item.id}
           todo={item.todo}
           checked={item.checked}
-          handleClick={() => {
-            this.handleChange(item.id);
+          handleDone={() => {
+            this.handleDone(item.id);
+          }}
+          handleDelete={() => {
+            this.handleDelete(item.id);
           }}
         />
       );
