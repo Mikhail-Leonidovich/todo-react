@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./tasksListStyle.css";
 
-const TasksListComponent = (props) => {
+const TasksItemComponent = (props) => {
   const doneClass = "text done";
 
   return (
-    <div className="tasks__item" key={props.id}>
+    <div className="tasks__item" >
       <div className={props.checked ? "text done" : "text"}>{props.todo}</div>
       <button className="btn-del" onClick={props.handleDelete}>
         Delete
@@ -21,4 +21,4 @@ const TasksListComponent = (props) => {
   );
 };
 
-export default TasksListComponent;
+export default TasksItemComponent;
