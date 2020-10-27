@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+taimport React, { Component } from "react";
 import "../Todo-list/todoListStyle.css";
 import TasksItemComponent from "../Tasks-list/tasksItemComponent.js";
 import todoDate from "../../todoDate.js";
@@ -9,6 +9,7 @@ export default class TodoListComponent extends Component {
     this.state = {
       todoItems: todoDate,
       counter: 3,
+      input: "",
     };
   }
 
@@ -31,21 +32,27 @@ export default class TodoListComponent extends Component {
   };
 
   handleAdd = () => {
-    const taskValue = document.querySelector(".block__add-text").value;
-    const newTask = {
-      todo: taskValue,
-      id: this.state.counter,
-      checked: false,
-    };
+    let {input} = this.state;
+    if (input) {
+      const newTask = {
+        todo: this.state.input,
+        id: this.state.counter,
+        checked: false,
+      };
 
-    this.setState((state) => {
-      let { todoItems } = state;
-      todoItems.push(newTask);
-      let { counter } = state;
-      counter = counter + 1;
-      console.log(todoItems, counter);
-      return { todoItems, counter };
-    });
+      this.setState((state) => {
+        let { todoItems } = state;
+        todoItems = [... todoItems,newTask];
+          
+        let { counter } = state;
+        counter = counter + 1;
+        return { todoItems, counter};
+      });
+    } else alert("Пустое значение");
+  };
+
+  handleChange = (e) => {
+    this.setState({ input: e.target.value });
   };
 
   render() {
@@ -83,6 +90,7 @@ export default class TodoListComponent extends Component {
                 className="block__add-text"
                 type="text"
                 placeholder="Введите заметку"
+                onChange={this.handleChange}
               />
               <button
                 type="button"

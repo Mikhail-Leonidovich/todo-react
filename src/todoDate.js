@@ -1,5 +1,5 @@
 const todoDate = [
-  {
+  /* {
     todo: "Выгулять кота",
     id: 0,
     checked: false,
@@ -13,7 +13,7 @@ const todoDate = [
     todo: "Постирать вещи",
     id: 2,
     checked: false,
-  },
+  }, */
 ];
 
 export default todoDate;
