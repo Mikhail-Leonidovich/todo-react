@@ -52,7 +52,6 @@ export default class TodoListComponent extends Component {
       });
 
      } else alert("Пустое значение");
-
   };
 
   handleChange = (e) => {
@@ -67,7 +66,6 @@ export default class TodoListComponent extends Component {
 
   render() {
     const { todoItems } = this.state;
-
     const incompTasks = todoItems.filter((item) => {
       return item.checked === false;
     });
@@ -108,7 +106,6 @@ export default class TodoListComponent extends Component {
                 type="button"
                 className="btn-add"
                 onClick={this.handleAdd}
-      
               >
                 Add
               </button>
