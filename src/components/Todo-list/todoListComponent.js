@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "../Todo-list/todoListStyle.css";
-import TasksListComponent from "../Tasks-list/tasksListComponent.js";
-import TodoDate from "../../TodoDate.js";
+import TasksItemComponent from "../Tasks-list/tasksItemComponent.js";
+import todoDate from "../../todoDate.js";
 
 export default class TodoListComponent extends Component {
   constructor() {
     super();
     this.state = {
-      todoItems: TodoDate,
+      todoItems: todoDate,
+      counter: 3,
     };
   }
 
@@ -29,6 +30,24 @@ export default class TodoListComponent extends Component {
     });
   };
 
+  handleAdd = () => {
+    const taskValue = document.querySelector(".block__add-text").value;
+    const newTask = {
+      todo: taskValue,
+      id: this.state.counter,
+      checked: false,
+    };
+
+    this.setState((state) => {
+      let { todoItems } = state;
+      todoItems.push(newTask);
+      let { counter } = state;
+      counter = counter + 1;
+      console.log(todoItems, counter);
+      return { todoItems, counter };
+    });
+  };
+
   render() {
     const { todoItems } = this.state;
 
@@ -41,7 +60,7 @@ export default class TodoListComponent extends Component {
 
     const tasks = [...incompTasks, ...compTasks].map((item) => {
       return (
-        <TasksListComponent
+        <TasksItemComponent
           key={item.id}
           todo={item.todo}
           checked={item.checked}
@@ -65,7 +84,11 @@ export default class TodoListComponent extends Component {
                 type="text"
                 placeholder="Введите заметку"
               />
-              <button type="button" className="btn-add">
+              <button
+                type="button"
+                className="btn-add"
+                onClick={this.handleAdd}
+              >
                 Add
               </button>
             </div>

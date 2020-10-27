@@ -1,4 +1,4 @@
-const TodoDate = [
+const todoDate = [
   {
     todo: "Выгулять кота",
     id: 0,
@@ -16,4 +16,4 @@ const TodoDate = [
   },
 ];
 
-export default TodoDate;
+export default todoDate;

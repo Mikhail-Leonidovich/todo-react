@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./tasksListStyle.css";
 
-const TasksListComponent = (props) => {
+const TasksItemComponent = (props) => {
   const doneClass = "text done";
 
   return (
@@ -21,4 +21,4 @@ const TasksListComponent = (props) => {
   );
 };
 
-export default TasksListComponent;
+export default TasksItemComponent;
